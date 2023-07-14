@@ -2,9 +2,9 @@
 import random
 itemList = []
 listLength = 0
-step = 1
 #definitions
 def SelectionSort():
+    step = 1
     #for every item in the itemList
     for i in itemList:
         smallestNumber = len(itemList) + 1
@@ -23,16 +23,19 @@ def SelectionSort():
             itemList[itemList.index(i)] = smallestNumber
             step += 1
 def BubbleSort():
-    for i in itemList:
-        temp = 0
-        firstIndex = 0
-        secondIndex = 0
-        if i <= len(itemList) - 1:
-            firstIndex = itemList.index(i)
-            secondIndex = itemList.index(i) + 1
+    step = 1
+    sortedPairs = 0
+    while sortedPairs < len(itemList) - 1:
+        for i in range(len(itemList) - 1):
+            firstIndex = i
+            secondIndex = i + 1
             if itemList[firstIndex] > itemList[secondIndex]:
-                print("mm")
-        
+                sortedPairs = 0
+                print(str(step) + ". Swap " + str(itemList[firstIndex]) + " and " + str(itemList[secondIndex]) + ".")
+                itemList[firstIndex], itemList[secondIndex] = itemList[secondIndex], itemList[firstIndex]
+                step += 1
+            else:
+                sortedPairs += 1
 #UI
 print("How many items would you like to sort?")
 listLength = int(input())
@@ -51,8 +54,7 @@ print("Steps:")
 if choice == 1:
     SelectionSort()
 if choice == 2:
-    print("WORK IN PROGRESS!")
-    #BubbleSort()
+    BubbleSort()
 print("")
 print("Sorted list:")
 for printout in itemList:
